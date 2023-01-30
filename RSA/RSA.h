@@ -11,4 +11,3 @@ unsigned long long lcm(unsigned long long x, unsigned long long y);
 unsigned long long modInverse(unsigned long long e, unsigned long long lam);
 unsigned long long modExp(unsigned long long base,unsigned long long exp,unsigned long long n);
 #endif //ASSIGNMENTS_RSA_H
-#endif // RSA_H_INCLUDED

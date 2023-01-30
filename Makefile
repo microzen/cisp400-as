@@ -1,11 +1,11 @@
-all: main clean run
+all: clean main run
 
 CC = g++
 override FLAGS += -g -Wall
 override FLAGS += -std=c++17
 override FLAGS += -fpermissive
 
-SRCS = $(shell find ./M01A -type f -name '*.cpp')
+SRCS = $(shell find ./RSA -type f -name '*.cpp')
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp
