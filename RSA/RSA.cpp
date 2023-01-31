@@ -21,15 +21,11 @@ bool isPrime(unsigned long long n) {
 }
 
 unsigned long long getPrime(unsigned long long min, unsigned long long max) {
-//    std::default_random_engine generator;
-//    std::uniform_int_distribution<unsigned long long> distribution(min, max);
 
-    unsigned long long number;
+    unsigned long long number = 0;
     bool is_prime = false;
-
     while (!is_prime) {
-//        number = distribution(generator);
-        number = (rand()%max)+min;
+        number = (rand() % (max - min + 1)) + min;
         is_prime = isPrime(number);
     }
     return number;
@@ -50,11 +46,12 @@ unsigned long long lcm(unsigned long long x, unsigned long long y) {
 }
 
 unsigned long long modInverse(unsigned long long e, unsigned long long lam) {
-    for (unsigned long long i = 0; i < e; ++i) {
+    for (unsigned long long i = 1; i < lam; ++i) {
         if ((e * i) % lam == 1) {
             return i;
         }
     }
+    return 0;
 }
 
 unsigned long long modExp(unsigned long long base, unsigned long long exp, unsigned long long n) {
