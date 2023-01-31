@@ -39,3 +39,9 @@ Test/
 
 # execute file
 main
+
+# CMake
+
+CMakeFiles
+cmake_install.cmake
+CMakeCache.txt
