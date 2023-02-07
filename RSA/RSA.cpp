@@ -7,54 +7,64 @@
 #include <random>
 #include "RSA.h"
 
-bool isPrime(unsigned long long n) {
-    unsigned long long counter = 2;
-    bool isPrime = true;
-    while (counter < n) {
-        if (n % counter == 0) {
-            isPrime = false;
-            break;
-        }
-        counter++;
+bool isPrime(unsigned long long n)
+{
+
+    if(n == 1) return false;
+    else if(n == 2) return true;
+    else if(n % 2 == 0) return false;
+
+    for (long i = 3; i <= sqrt(n); i += 2)
+    {
+        if (n % i == 0) return false;
     }
-    return isPrime;
+    return true;
 }
 
-unsigned long long getPrime(unsigned long long min, unsigned long long max) {
+unsigned long long getPrime(unsigned long long min, unsigned long long max)
+{
 
     unsigned long long number = 0;
     bool is_prime = false;
-    while (!is_prime) {
+    while (!is_prime)
+    {
         number = (rand() % (max - min + 1)) + min;
         is_prime = isPrime(number);
     }
     return number;
-
-
 }
 
-unsigned long long gcd(unsigned long long x, unsigned long long y) {
-    if (x % y == 0) {
+unsigned long long gcd(unsigned long long x, unsigned long long y)
+{
+    if (x % y == 0)
+    {
         return y;
-    } else {
+    }
+    else
+    {
         return gcd(y, x % y);
     }
 }
 
-unsigned long long lcm(unsigned long long x, unsigned long long y) {
+unsigned long long lcm(unsigned long long x, unsigned long long y)
+{
     return (x * y) / gcd(x, y);
 }
 
-unsigned long long modInverse(unsigned long long e, unsigned long long lam) {
-    for (unsigned long long i = 1; i < lam; ++i) {
-        if ((e * i) % lam == 1) {
+unsigned long long modInverse(unsigned long long e, unsigned long long lam)
+{
+    for (unsigned long long i = 1; i < lam; ++i)
+    {
+        if ((e * i) % lam == 1)
+        {
             return i;
         }
     }
     return 0;
 }
 
-unsigned long long modExp(unsigned long long base, unsigned long long exp, unsigned long long n) {
+unsigned long long modExp(unsigned long long base, unsigned long long exp, unsigned long long n)
+{
     unsigned long long ans = 1;
     for (unsigned long long i = 0; i < exp; i++)
         ans = (ans * base) % n;
