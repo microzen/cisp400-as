@@ -46,6 +46,9 @@ CMakeFiles
 cmake_install.cmake
 CMakeCache.txt
 
+# CLion CMake
+cmake-build-debug/
+
 #VS Code
 .vscode
 
