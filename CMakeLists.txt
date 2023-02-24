@@ -7,13 +7,15 @@ set(CMAKE_CXX_STANDARD 17)
 # ---------------------
 # Google Test
 # ---------------------
-set(GTEST_SOURCE_DIR ./lib/googletest)
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/heads/main.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-# Build the GTest library
-add_subdirectory(${GTEST_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/gtest)
-include_directories(${GTEST_SOURCE_DIR}/include)
-
-# Link your test executable with the GTest library
+FetchContent_MakeAvailable(googletest)
 
 set(TEST_FILES
         tst/matrices_test.cpp
@@ -22,7 +24,10 @@ set(TEST_FILES
 
 add_executable(tst ${TEST_FILES})
 
-target_link_libraries(tst gtest_main)
+target_link_libraries(tst gtest gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(tst)
 
 #----------------------
 # My Project
