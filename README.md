@@ -1,15 +1,6 @@
 # CISP 400 Assignment
-```text
-├── CMakeLists.txt
-├── LICENSE
-├── M01A
-│   ├── M01.cpp
-│   └── Makefile
-├── Makefile
-├── README.md
-├── RSA
-│   ├── RSA.cpp
-│   └── RSA.h
-└── Test
-    └── Test.cpp
-```
+
+- [About Classes](doc/classes.md)
+
+- [CMake Doc](doc/cmake.md)
+- [Google Test](doc/gtest.md)
