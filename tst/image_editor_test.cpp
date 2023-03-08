@@ -85,7 +85,33 @@ TEST(IMG_E, Filter) {
     }
 }
 
-TEST(ING_F, TurnH) {
+TEST(ING_F, TurnFV) {
+    const string path = "../img/";
+    const string or_name = "pikachu.png";
+
+    ImageEditor imgEditor(path + or_name);
+    imgEditor.flipVertical();
+
+    const string sa_name = "pikachu_turnfv.png";
+    imgEditor.save(path + sa_name);
+
+    Picture pic1(path + or_name);
+    Picture pic2(path + sa_name);
+
+    EXPECT_EQ(pic1.width(), pic2.width());
+    EXPECT_EQ(pic1.height(), pic2.height());
+
+    for (int x = 0; x < pic1.width(); ++x) {
+        for (int y = 0; y < pic1.height(); ++y) {
+            int y2 = pic2.height() - y - 1;
+            EXPECT_EQ(pic1.red(x, y), pic2.red(x, y2));
+            EXPECT_EQ(pic1.green(x, y), pic2.green(x, y2));
+            EXPECT_EQ(pic1.blue(x, y), pic2.blue(x, y2));
+        }
+    }
+}
+
+TEST(ING_F, TurnFH) {
     const string path = "../img/";
     const string or_name = "pikachu.png";
 
@@ -93,7 +119,7 @@ TEST(ING_F, TurnH) {
 //    imgEditor.flipVertical();
     imgEditor.flipHorizontal();
 
-    const string sa_name = "pikachu_turnh.png";
+    const string sa_name = "pikachu_turnfh.png";
     imgEditor.save(path + sa_name);
 
     Picture pic1(path + or_name);
@@ -104,31 +130,10 @@ TEST(ING_F, TurnH) {
 
     for (int x = 0; x < pic1.width(); ++x) {
         for (int y = 0; y < pic1.height(); ++y) {
-            EXPECT_EQ(pic1.red(x, y), pic2.red(x, pic2.height() - y - 1));
-        }
-    }
-}
-
-TEST(ING_F, TurnV) {
-    const string path = "../img/";
-    const string or_name = "pikachu.png";
-
-    ImageEditor imgEditor(path + or_name);
-    imgEditor.flipVertical();
-//    imgEditor.flipHorizontal();
-
-    const string sa_name = "pikachu_turnv.png";
-    imgEditor.save(path + sa_name);
-
-    Picture pic1(path + or_name);
-    Picture pic2(path + sa_name);
-
-    EXPECT_EQ(pic1.width(), pic2.width());
-    EXPECT_EQ(pic1.height(), pic2.height());
-
-    for (int x = 0; x < pic1.width(); ++x) {
-        for (int y = 0; y < pic1.height(); ++y) {
-            EXPECT_EQ(pic1.red(x, y), pic2.red(pic2.width() - x - 1, y));
+            int x2 = pic2.width() - x - 1;
+            EXPECT_EQ(pic1.red(x, y), pic2.red(x2, y));
+            EXPECT_EQ(pic1.green(x, y), pic2.green(x2, y));
+            EXPECT_EQ(pic1.blue(x, y), pic2.blue(x2, y));
         }
     }
 }

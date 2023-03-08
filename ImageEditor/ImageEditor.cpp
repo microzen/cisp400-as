@@ -22,9 +22,10 @@ void ImageEditor::swapPixels(int x1, int y1, int x2, int y2) {
     this->pic.set(x2, y2, tr, tg, tb);
 }
 
-void ImageEditor::flipHorizontal() {
+
+
+void ImageEditor::flipVertical() {
     int mid = this->pic.height() / 2;
-//    if (mid % 2 != 0)mid--;
     for (int x = 0; x < pic.width(); ++x) {
         for (int y = 0; y < mid; ++y) {
             int y2 = this->pic.height() - y - 1;
@@ -32,10 +33,8 @@ void ImageEditor::flipHorizontal() {
         }
     }
 }
-
-void ImageEditor::flipVertical() {
+void ImageEditor::flipHorizontal() {
     int mid = this->pic.width() / 2;
-//    if (mid % 2 == 0)mid--;
     for (int x = 0; x < mid; ++x) {
         for (int y = 0; y < pic.height(); ++y) {
             int x2 = pic.width() - x - 1;
