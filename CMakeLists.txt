@@ -20,6 +20,10 @@ FetchContent_MakeAvailable(googletest)
 set(TEST_FILES
         tst/matrices_test.cpp
         Matrices/Matrices.cpp
+        tst/image_editor_test.cpp
+        ImageEditor/ImageEditor.cpp
+        ImageEditor/picture.cpp
+        ImageEditor/lodepng.cpp
         )
 
 add_executable(tst ${TEST_FILES})
@@ -34,6 +38,8 @@ gtest_discover_tests(tst)
 # ---------------------
 
 include_directories(Matrices/)
+include_directories(ImageEditor/)
+include_directories(img/)
 #
 set(MA_SOURCE_FILES Matrices/main.cpp Matrices/Matrices.cpp)
 ##add_library(Matrices/main.cpp Matrices/Matrices.h)
